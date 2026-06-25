@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, radius, fontSize } from '../theme';
+import { colors, spacing, radius, fontSize, fontFamily } from '../theme';
 import { Exercise } from '../types';
 
 interface ExerciseCardProps {
@@ -13,19 +13,15 @@ interface ExerciseCardProps {
 export function ExerciseCard({ exercise, selected, onToggle }: ExerciseCardProps) {
   return (
     <View style={styles.card}>
-      <Image
-        source={{
-          uri:
-            exercise.image ??
-            'https://via.placeholder.com/120x120/161A16/8A938A?text=Exercise',
-        }}
-        style={styles.image}
-        resizeMode="contain"
-      />
+      <View style={styles.imagePlaceholder}>
+        <Ionicons name="barbell-outline" size={28} color={colors.accent} />
+      </View>
 
       <View style={styles.info}>
-        <Text style={styles.name}>{exercise.name.toUpperCase()}</Text>
-        <Text style={styles.meta}>
+        <Text allowFontScaling={false} style={styles.name}>
+          {exercise.name.toUpperCase()}
+        </Text>
+        <Text allowFontScaling={false} style={styles.meta}>
           {exercise.type} + {exercise.muscles.join(', ')}
         </Text>
       </View>
@@ -34,6 +30,8 @@ export function ExerciseCard({ exercise, selected, onToggle }: ExerciseCardProps
         onPress={() => onToggle(exercise.id)}
         style={[styles.addButton, selected && styles.addButtonActive]}
         activeOpacity={0.7}
+        accessibilityRole="button"
+        accessibilityLabel={`${selected ? 'Remove' : 'Select'} ${exercise.name}`}
       >
         <Ionicons
           name={selected ? 'checkmark' : 'add'}
@@ -47,17 +45,24 @@ export function ExerciseCard({ exercise, selected, onToggle }: ExerciseCardProps
 
 const styles = StyleSheet.create({
   card: {
-    flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: radius.lg,
-    padding: spacing.md,
+    borderWidth: 1,
+    flexDirection: 'row',
     gap: spacing.md,
+    minHeight: 108,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.lg,
   },
-  image: {
-    width: 90,
-    height: 70,
+  imagePlaceholder: {
+    alignItems: 'center',
+    backgroundColor: colors.surfaceAlt,
     borderRadius: radius.sm,
+    height: 68,
+    justifyContent: 'center',
+    width: 76,
   },
   info: {
     flex: 1,
@@ -65,22 +70,24 @@ const styles = StyleSheet.create({
   },
   name: {
     color: colors.textPrimary,
-    fontSize: fontSize.title,
-    fontWeight: '800',
-    letterSpacing: 0.5,
+    fontFamily: fontFamily.display,
+    fontSize: 24,
+    letterSpacing: 0,
+    lineHeight: 27,
   },
   meta: {
     color: colors.textSecondary,
     fontSize: fontSize.caption,
-    lineHeight: 16,
+    fontWeight: '600',
+    lineHeight: 18,
   },
   addButton: {
-    width: 44,
-    height: 44,
-    borderRadius: radius.pill,
-    backgroundColor: colors.accentDark,
     alignItems: 'center',
+    backgroundColor: colors.accentDark,
+    borderRadius: radius.pill,
+    height: 48,
     justifyContent: 'center',
+    width: 48,
   },
   addButtonActive: {
     backgroundColor: colors.accent,

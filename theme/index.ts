@@ -1,11 +1,11 @@
 export const colors = {
-  background: '#0A0F08',
+  background: '#0D0D0D',
   surface: '#141A12',
-  surfaceAlt: '#1F2820',
+  surfaceAlt: '#20291F',
   accent: '#6AC006',
   accentLight: '#9BD957',
   levelGlow: '#B8FF3D',
-  accentDark: '#29430F',
+  accentDark: '#2B520B',
   warning: '#FF6B1F',
   danger: '#E54B4B',
   textPrimary: '#FFFFFF',
@@ -36,4 +36,8 @@ export const fontSize = {
   title: 16,
   heading: 20,
   display: 24,
+} as const;
+
+export const fontFamily = {
+  display: 'BebasNeue_400Regular',
 } as const;

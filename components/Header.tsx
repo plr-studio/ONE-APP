@@ -1,8 +1,9 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { colors, spacing, fontSize } from '../theme';
+import { LogoMark, LogoWordmark } from './BrandLogo';
+import { colors, spacing } from '../theme';
 
 export function Header() {
   const router = useRouter();
@@ -10,10 +11,8 @@ export function Header() {
   return (
     <View style={styles.container}>
       <View style={styles.logoRow}>
-        <Text style={styles.logoMark}>1</Text>
-        <Text style={styles.logoText}>
-          ONE <Text style={styles.logoAccent}>UP</Text>
-        </Text>
+        <LogoMark />
+        <LogoWordmark />
       </View>
 
       <View style={styles.actions}>
@@ -36,30 +35,15 @@ export function Header() {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
+    minHeight: 40,
     justifyContent: 'space-between',
   },
   logoRow: {
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
-  },
-  logoMark: {
-    color: colors.accent,
-    fontSize: 36,
-    fontWeight: '900',
-    fontStyle: 'italic',
-    lineHeight: 40,
-  },
-  logoText: {
-    color: colors.textPrimary,
-    fontSize: fontSize.heading,
-    fontWeight: '900',
-    fontStyle: 'italic',
-  },
-  logoAccent: {
-    color: colors.accent,
+    flexDirection: 'row',
+    gap: spacing.xs,
   },
   actions: {
     flexDirection: 'row',

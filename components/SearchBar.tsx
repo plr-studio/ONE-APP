@@ -12,8 +12,9 @@ interface SearchBarProps {
 export function SearchBar({ value, onChangeText, placeholder }: SearchBarProps) {
   return (
     <View style={styles.container}>
-      <Ionicons name="search" size={20} color={colors.textMuted} />
+      <Ionicons name="search" size={24} color={colors.textMuted} />
       <TextInput
+        allowFontScaling={false}
         style={styles.input}
         value={value}
         onChangeText={onChangeText}
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: radius.md,
     paddingHorizontal: spacing.lg,
-    height: 48,
+    height: 56,
     gap: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
@@ -40,5 +41,6 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.textPrimary,
     fontSize: fontSize.title,
+    fontWeight: '700',
   },
 });

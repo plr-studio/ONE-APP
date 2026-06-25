@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { colors, spacing, radius, fontSize } from '../theme';
+import { colors, spacing, radius, fontSize, fontFamily } from '../theme';
 
 interface SelectionBarProps {
   count: number;
@@ -12,8 +12,12 @@ export function SelectionBar({ count, estimatedMinutes, onStart }: SelectionBarP
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.count}>{count} Exercise{count === 1 ? '' : 's'} Selected</Text>
-        <Text style={styles.subtitle}>{estimatedMinutes} mins (Est.)</Text>
+        <Text allowFontScaling={false} style={styles.count}>
+          {count} Exercise{count === 1 ? '' : 's'} Selected
+        </Text>
+        <Text allowFontScaling={false} style={styles.subtitle}>
+          {estimatedMinutes} mins (Est.)
+        </Text>
       </View>
 
       <TouchableOpacity
@@ -22,7 +26,9 @@ export function SelectionBar({ count, estimatedMinutes, onStart }: SelectionBarP
         disabled={count === 0}
         activeOpacity={0.8}
       >
-        <Text style={styles.buttonText}>START WORKOUT</Text>
+        <Text allowFontScaling={false} style={styles.buttonText}>
+          START WORKOUT
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -35,14 +41,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
-    padding: spacing.lg,
+    padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
   },
   count: {
     color: colors.textPrimary,
     fontSize: fontSize.title,
-    fontWeight: '700',
+    fontWeight: '900',
   },
   subtitle: {
     color: colors.textSecondary,
@@ -60,8 +66,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.background,
-    fontWeight: '800',
-    fontSize: fontSize.body,
-    letterSpacing: 0.5,
+    fontFamily: fontFamily.display,
+    fontSize: 22,
+    letterSpacing: 0,
   },
 });

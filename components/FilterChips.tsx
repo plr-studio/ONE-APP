@@ -15,6 +15,7 @@ export function FilterChips({ tags, selectedId, onSelect }: FilterChipsProps) {
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.row}
+      style={styles.scroll}
     >
       {tags.map((tag) => {
         const active = tag.id === selectedId;
@@ -25,7 +26,11 @@ export function FilterChips({ tags, selectedId, onSelect }: FilterChipsProps) {
             style={[styles.chip, active && styles.chipActive]}
             activeOpacity={0.7}
           >
-            <Text style={[styles.label, active && styles.labelActive]}>
+            <Text
+              allowFontScaling={false}
+              numberOfLines={1}
+              style={[styles.label, active && styles.labelActive]}
+            >
               {tag.label}
             </Text>
           </TouchableOpacity>
@@ -36,26 +41,40 @@ export function FilterChips({ tags, selectedId, onSelect }: FilterChipsProps) {
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    flexGrow: 0,
+  },
   row: {
+    alignItems: 'center',
     gap: spacing.sm,
-    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.xs,
+    paddingVertical: spacing.md,
   },
   chip: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
+    alignItems: 'center',
+    backgroundColor: colors.surfaceAlt,
+    borderColor: colors.border,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surfaceAlt,
+    flexShrink: 0,
+    justifyContent: 'center',
+    height: 44,
+    minWidth: 88,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
   },
   chipActive: {
+    backgroundColor: colors.surface,
     borderColor: colors.accent,
-    backgroundColor: 'transparent',
+    borderWidth: 2,
   },
   label: {
     color: colors.textSecondary,
     fontSize: fontSize.body,
-    fontWeight: '500',
+    fontWeight: '800',
+    includeFontPadding: false,
+    lineHeight: 20,
+    textAlign: 'center',
   },
   labelActive: {
     color: colors.accent,

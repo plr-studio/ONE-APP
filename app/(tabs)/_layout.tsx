@@ -11,6 +11,13 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         sceneStyle: { backgroundColor: colors.background },
+        tabBarStyle: {
+          backgroundColor: 'transparent',
+          borderTopWidth: 0,
+          elevation: 0,
+          height: 0,
+          position: 'absolute',
+        },
       }}
     >
       {APP_TABS.map((tab) => (

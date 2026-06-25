@@ -4,9 +4,10 @@
 export interface Exercise {
   id: string;
   name: string;
-  type: string;          // e.g. "Compound"
-  muscles: string[];     // e.g. ["Pectorals", "Triceps", "Deltoids"]
-  image?: string;        // optional illustration url; falls back to a placeholder
+  type: string;
+  muscles: string[];
+  tags: string[];
+  image?: string;
 }
 
 export interface FilterTag {

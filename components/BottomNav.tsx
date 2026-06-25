@@ -11,7 +11,7 @@ export function BottomNav({ state, navigation }: BottomTabBarProps) {
   const bottomOffset = Math.max(insets.bottom, spacing.md);
 
   return (
-    <View style={[styles.outer, { paddingBottom: bottomOffset }]}>
+    <View pointerEvents="box-none" style={[styles.outer, { bottom: bottomOffset }]}>
       <View style={styles.container}>
         {APP_TABS.map((tab) => {
           const routeIndex = state.routes.findIndex(
@@ -68,8 +68,12 @@ const styles = StyleSheet.create({
   outer: {
     alignItems: 'center',
     backgroundColor: 'transparent',
+    bottom: 0,
+    left: 0,
     paddingHorizontal: spacing.sm,
-    paddingTop: spacing.sm,
+    pointerEvents: 'box-none',
+    position: 'absolute',
+    right: 0,
   },
   container: {
     backgroundColor: colors.surface,
